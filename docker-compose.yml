@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  compilador:
+    build: .
+    container_name: compilador-scope
+    volumes:
+      - .:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    command: bash
+    
+  # Servicio para compilar automáticamente
+  build-compilador:
+    build: .
+    container_name: build-compilador
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ./build_and_test.sh
+    
+  # Servicio para desarrollo interactivo
+  dev:
+    build: .
+    container_name: compilador-dev
+    volumes:
+      - .:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    command: bash -c "
+        echo '=== COMPILADOR CON SCOPE POR BLOQUES ===' &&
+        echo 'Generando archivos...' &&
+        bison -d bison.y &&
+        flex flex.l &&
+        echo 'Compilando...' &&
+        gcc -o compilador main.c bison.tab.c lex.yy.c -lfl &&
+        echo '=== COMPILADOR LISTO ===' &&
+        echo 'Puedes usar:' &&
+        echo '  ./compilador < archivo.txt' &&
+        echo '  o escribir código directamente' &&
+        echo '================================' &&
+        bash
+      "

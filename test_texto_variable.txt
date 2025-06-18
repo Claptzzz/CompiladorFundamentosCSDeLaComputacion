@@ -1,0 +1,5 @@
+dinoint numero = 42;
+texto "El número es: ";
+texto numero;
+dinoint aux = 8/2;
+texto aux;

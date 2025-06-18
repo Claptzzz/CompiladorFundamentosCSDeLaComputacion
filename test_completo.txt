@@ -1,0 +1,50 @@
+dinoint a = 8;
+dinoint b = 3;
+
+method sumar(dinoint x, dinoint y) {
+    dinoint resultado = x + y;
+    texto "Suma: ";
+    texto resultado;
+}
+
+method restar(dinoint x, dinoint y) {
+    dinoint resultado = x - y;
+    texto "Resta: ";
+    texto resultado;
+}
+
+method multiplicar(dinoint x, dinoint y) {
+    dinoint resultado = x * y;
+    texto "Multiplicación: ";
+    texto resultado;
+}
+
+method dividir(dinoint x, dinoint y) {
+    dinoint resultado = x / y;
+    texto "División: ";
+    texto resultado;
+}
+
+method exponente(dinoint base, dinoint exp) {
+    dinoint resultado = 1;
+    dinoint contador = 0;
+    texto "Calculando exponente...";
+    mientras (contador < exp) {
+        resultado = resultado * base;
+        contador = contador + 1;
+    }
+    texto "Exponente: ";
+    texto resultado;
+}
+
+texto "=== CALCULADORA CON FUNCIONES ===";
+texto "Números a usar: 8 y 3";
+
+texto "--- Operaciones Básicas ---";
+sumar(a, b);
+restar(a, b);
+multiplicar(a, b);
+dividir(a, b);
+
+texto "--- Exponente con While ---";
+exponente(a, b);
